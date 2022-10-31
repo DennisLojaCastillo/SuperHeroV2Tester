@@ -105,20 +105,12 @@ public class UserInterface {
         switch (addUserChoice) {
             case 1 -> addSuperhero();
             case 9 -> handlingUserChoice(addUserChoice);
-        }
-
-
-
-        if (addUserChoice == 1)
-            addSuperhero(); //Crud operation
-        else if (addUserChoice != 9) {
-            System.out.println("""
-                                        
+            default -> System.out.println("""
+                                      
                     Could not handle input. Please try again
                     Choose menu item 1 or tab 9 back to menu
                     """);
         }
-
     }
 
     //Oprettelsen af Superhelt
@@ -208,14 +200,10 @@ public class UserInterface {
     //-----------------------------------
 
     private void toolHandlingUserChoice(int searchUserChoice) {
-        if (searchUserChoice == 1)
-            searchByAlias(); //Crud operation
-            //else if (searchUserChoice == 2)
-            //searchByName(); //Crud operation
-            // else if (searchUserChoice == 3)
-            //searchByPower();
-        else if (searchUserChoice != 9) {
-            System.out.println("""
+        switch (searchUserChoice) {
+            case 1 -> searchByAlias();
+            case 9 -> handlingUserChoice(searchUserChoice);
+            default -> System.out.println("""
                                         
                     Could not handle input. Please try again
                     Choose menu item from 1-3 or tab 9 back to menu
@@ -271,10 +259,10 @@ public class UserInterface {
     //-----------------------------------
 
     private void editToolHandlingUserChoice(int editUserChoice) {
-        if (editUserChoice == 1)
-            editTool(); //Crud operation
-        else if (editUserChoice != 9) {
-            System.out.println("""
+        switch (editUserChoice) {
+            case 1 -> editTool();
+            case 9 -> handlingUserChoice(editUserChoice);
+            default -> System.out.println("""
                                         
                     Could not handle input. Please try again
                     Choose menu item 1 or tab 9 back to menu
@@ -375,10 +363,10 @@ public class UserInterface {
     //Sletter en Superhelt
 
     private void deleteToolHandlingUserChoice(int deleteUserChoice) {
-        if (deleteUserChoice == 1)
-            deleteHero(); //Crud operation
-        else if (deleteUserChoice != 9) {
-            System.out.println("""
+        switch (deleteUserChoice) {
+            case 1 -> deleteHero();
+            case 9 -> handlingUserChoice(deleteUserChoice);
+            default -> System.out.println("""
                                         
                     Could not handle input. Please try again
                     Choose menu item 1 or tab 9 back to menu
