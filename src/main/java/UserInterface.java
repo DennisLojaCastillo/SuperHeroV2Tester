@@ -7,7 +7,7 @@ public class UserInterface {
     private final ControllerSuperhero controller = new ControllerSuperhero();
     Scanner scanner = new Scanner(System.in);
 
-    public void startProgram() throws FileNotFoundException {
+    public void startProgram() {
         int userChoice = -1;
         controller.loadSuperhero();
 
@@ -43,15 +43,17 @@ public class UserInterface {
         }
     }
 
-    public void handlingUserChoice(int userChoice) throws FileNotFoundException {
+    public void handlingUserChoice(int userChoice) {
         switch (userChoice) {
             case 1 -> addSuperhero();
             case 2 -> superheroList();
             case 3 -> searchByAlias();
             case 4 -> editTool();
             case 5 -> deleteHero();
-            case 7 -> controller.saveSuperhero();
-            case 9 -> System.out.println("Goodbye, Thank you!");
+            case 9 -> {
+                controller.saveSuperhero();
+                System.out.println("Goodbye, Thank you!");
+            }
 
             default -> System.out.println("""   
                     Could not handle input. Please try again

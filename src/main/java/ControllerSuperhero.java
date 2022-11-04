@@ -1,4 +1,5 @@
 import javax.xml.crypto.Data;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -15,7 +16,6 @@ private FileHandler fileHandler;
         database = new Database();
         fileHandler = new FileHandler();
     }
-    public Database addSuperhero;
 
     public void addSuperhero(String name, String alias, String power, int year, double strength)
     {
@@ -30,11 +30,13 @@ private FileHandler fileHandler;
     {
         return database.getHeros();
     }
-    public void loadSuperhero() throws FileNotFoundException {
-        fileHandler.loadListOfNames();
+
+    public void loadSuperhero() {
+        database.addArraySuperhero(fileHandler.loadListOfNames());
     }
-    public void saveSuperhero() throws  FileNotFoundException {
-        fileHandler.saveListOfNames();
+
+    public void saveSuperhero() {
+        fileHandler.saveListOfNames(database.getHeros());
     }
 
     public MessageEnum removeHero(int nr) {

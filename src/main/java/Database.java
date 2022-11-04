@@ -8,8 +8,11 @@ public class Database {
         heroes.add(new Superhero("Bruce Wayne", "Bat Man", "Agile", 1923, 65.21));
     }*/
 
-    private final ArrayList<Superhero> heroes = new ArrayList<>();
+    private ArrayList<Superhero> heroes = new ArrayList<>();
 
+    public void addArraySuperhero(ArrayList<Superhero> s) {
+        heroes = s;
+    }
 
     public void addSuperhero(String name, String alias, String power, int year, double strength) {
         heroes.add(new Superhero(name, alias, power, year, strength));
