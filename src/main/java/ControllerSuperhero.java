@@ -4,6 +4,7 @@ import java.util.Collection;
 
 public class ControllerSuperhero {
 private Database database;
+private FileHandler fileHandler;
 
 
     //TODO kalde på add metoden fra ui
@@ -11,6 +12,7 @@ private Database database;
     //TODO exit program
     public ControllerSuperhero() {
         database = new Database();
+        fileHandler = new FileHandler();
     }
     public Database addSuperhero;
 
@@ -26,6 +28,9 @@ private Database database;
     public ArrayList<Superhero> getHeros()
     {
         return database.getHeros();
+    }
+    public void loadSuperhero() {
+        fileHandler.
     }
 
     public MessageEnum removeHero(int nr) {
