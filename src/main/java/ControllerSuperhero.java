@@ -28,4 +28,8 @@ private Database database;
         return database.getHeros();
     }
 
+    public MessageEnum removeHero(int nr) {
+        return database.removeSuperhero(nr);
+    }
+
 }

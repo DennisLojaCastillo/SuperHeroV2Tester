@@ -15,16 +15,24 @@ public class Database {
         heroes.add(new Superhero(name, alias, power, year, strength));
     }
 
+    public MessageEnum removeSuperhero(int nr) {
+        if (nr <= heroes.size()) {
+            heroes.remove(nr - 1);
+            return MessageEnum.SUCCESS;
+        } else {
+            return MessageEnum.ERROR;
+        }
+    }
+
     public ArrayList<Superhero> getHeros() {
         return heroes;
     }
 
-    //TODO Lav en hvor metoden godtager både store og små bogstaver
     public ArrayList<Superhero> searchByAlias(String alias) {
         ArrayList<Superhero> heroList = new ArrayList<>();
 
         for (Superhero superhero : heroes) {
-            if (superhero.getAlias().contains(alias)) {
+            if (superhero.getAlias().toLowerCase().contains(alias.toLowerCase())) {
                 heroList.add(superhero);
             }
         }
