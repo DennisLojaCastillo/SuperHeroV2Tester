@@ -153,14 +153,15 @@ public class UserInterface {
                     editHero.setYear(Integer.parseInt(newYear));
                 }
 
-                //TODO Fejl her - man skal både kunne skrive en (.) og (,)
                 System.out.println("Strength: " + editHero.getStrength());
                 System.out.println("Please enter the new STRENGTH below *OBS! You need to make a DOT (.) instead of COMMA");
                 String newStrength = scanner.nextLine();
                 if (!newStrength.isEmpty()) {
+                    newStrength = newStrength.replace(",", ".");
                     editHero.setStrength(Double.parseDouble(newStrength));
                 }
             }
+            System.out.println("done");
         }
     }
 
