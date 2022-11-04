@@ -1,3 +1,4 @@
+import java.io.FileNotFoundException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -6,8 +7,9 @@ public class UserInterface {
     private final ControllerSuperhero controller = new ControllerSuperhero();
     Scanner scanner = new Scanner(System.in);
 
-    public void startProgram() {
+    public void startProgram() throws FileNotFoundException {
         int userChoice = -1;
+        controller.loadSuperhero();
 
         System.out.println("""
                 ███████╗██╗   ██╗██████╗ ███████╗██████╗ ██╗  ██╗███████╗██████╗  ██████╗    \s
@@ -41,13 +43,14 @@ public class UserInterface {
         }
     }
 
-    public void handlingUserChoice(int userChoice) {
+    public void handlingUserChoice(int userChoice) throws FileNotFoundException {
         switch (userChoice) {
             case 1 -> addSuperhero();
             case 2 -> superheroList();
             case 3 -> searchByAlias();
             case 4 -> editTool();
             case 5 -> deleteHero();
+            case 7 -> controller.saveSuperhero();
             case 9 -> System.out.println("Goodbye, Thank you!");
 
             default -> System.out.println("""   
