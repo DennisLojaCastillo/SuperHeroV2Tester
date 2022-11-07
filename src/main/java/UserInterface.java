@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -139,6 +141,12 @@ public class UserInterface {
                 Superhero Registered!
                 """);
     }
+    public class NameComperator implements Comparator<Superhero> {
+
+        public int compare(Superhero s1, Superhero s2) {
+            return s1.getName().compareTo(s2.getName());
+        }
+    }
 
     //------------------------------------------------------------------------------------------------
     // Printer Superhelte liste ud.
@@ -147,6 +155,7 @@ public class UserInterface {
             System.out.println("\nThere's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
+            Collections.sort(controller.getHeros(), new NameComperator());
             for (Superhero superhero : controller.getHeros()) {
                 System.out.println(superhero);
             }
