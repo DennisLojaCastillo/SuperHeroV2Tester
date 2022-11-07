@@ -1,9 +1,12 @@
 import javax.xml.crypto.Data;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collection;
 
 public class ControllerSuperhero {
 private Database database;
+private FileHandler fileHandler;
 
 
     //TODO kalde på add metoden fra ui
@@ -11,8 +14,8 @@ private Database database;
     //TODO exit program
     public ControllerSuperhero() {
         database = new Database();
+        fileHandler = new FileHandler();
     }
-    public Database addSuperhero;
 
     public void addSuperhero(String name, String alias, String power, int year, double strength)
     {
@@ -26,6 +29,18 @@ private Database database;
     public ArrayList<Superhero> getHeros()
     {
         return database.getHeros();
+    }
+
+    public void loadSuperhero() {
+        database.addArraySuperhero(fileHandler.loadListOfNames());
+    }
+
+    public void saveSuperhero() {
+        fileHandler.saveListOfNames(database.getHeros());
+    }
+
+    public MessageEnum removeHero(int nr) {
+        return database.removeSuperhero(nr);
     }
 
 }
