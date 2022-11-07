@@ -1,2 +1,3 @@
-superhero,hej,888,123,500.2
-test,test,test,1832414,234234.0
+Bruce Wayne,Bat Man,Agile,1923,65.21
+Peter Parker,Spider Man,Spider-Power,1992,11.21
+Clark Kent,Super Man,Strong,1943,34.31

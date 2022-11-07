@@ -32,7 +32,7 @@ public class UserInterface {
         while (userChoice != 9) {
             System.out.println("""                  
                     1. Add new Superhero
-                    2. Superhero List
+                    2. View Superhero List
                     3. Search Superhero
                     4. Edit Superhero List
                     5. Delete Superhero
@@ -54,7 +54,7 @@ public class UserInterface {
             case 5 -> deleteHero();
             case 9 -> {
                 controller.saveSuperhero();
-                System.out.println("Goodbye, Thank you!");
+                System.out.println("\nGoodbye, Thank you!");
             }
 
             default -> System.out.println("""   
@@ -84,22 +84,75 @@ public class UserInterface {
 
         System.out.println("Superhero Registered!");
     }
-    public class NameComperator implements Comparator<Superhero> {
-
-        public int compare(Superhero s1, Superhero s2) {
-            return s1.getName().compareTo(s2.getName());
-        }
-    }
 
     public void superheroList() {
         if (controller.getHeros().size() == 0) {
             System.out.println("\nThere's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
-            Collections.sort(controller.getHeros(), new NameComperator());
+            //Name Comparator
             for (Superhero superhero : controller.getHeros()) {
                 System.out.println(superhero);
             }
+        }
+
+        int sortChoice = -1;
+
+        while (sortChoice != 9) {
+            System.out.println("""      
+                    Choose to sorted list by:            
+                    1. Name
+                    2. Alias
+                    3. Power
+                    4. Year
+                    5. Strength                   
+                    9. Back to menu
+                    """);
+            sortChoice = readInteger();
+            scanner.nextLine();
+            handlingSortedList(sortChoice);
+
+        }
+    }
+
+    public void handlingSortedList(int sortChoice) {
+        switch (sortChoice) {
+            case 1 -> {
+                controller.sortByName();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 2 -> {
+                controller.sortByAlias();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 3 -> {
+                controller.sortByPower();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 4 -> {
+                controller.sortByYear();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 5 -> {
+                controller.sortByStrength();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 9 -> handlingUserChoice(sortChoice);
+
+            default -> System.out.println("""   
+                    Could not handle input. Please try again
+                    Choose menu item from 1-5
+                    """);
         }
     }
 

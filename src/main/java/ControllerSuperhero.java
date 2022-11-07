@@ -1,8 +1,5 @@
-import javax.xml.crypto.Data;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Collections;
 
 public class ControllerSuperhero {
 private Database database;
@@ -41,6 +38,26 @@ private FileHandler fileHandler;
 
     public MessageEnum removeHero(int nr) {
         return database.removeSuperhero(nr);
+    }
+
+    public void sortByName() {
+        Collections.sort(getHeros(), new HeroNameComparator());
+    }
+
+    public void sortByAlias() {
+        Collections.sort(getHeros(), new AliasComparator());
+    }
+
+    public void sortByPower() {
+        Collections.sort(getHeros(), new PowerComparator());
+    }
+
+    public void sortByYear() {
+        Collections.sort(getHeros(), new YearComparator());
+    }
+
+    public void sortByStrength() {
+        Collections.sort(getHeros(), new StrengthComparator());
     }
 
 }
