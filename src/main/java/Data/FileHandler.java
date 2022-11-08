@@ -1,3 +1,5 @@
+package Data;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintStream;
@@ -7,7 +9,7 @@ import java.util.Scanner;
 
 public class FileHandler {
 
-//    private ControllerSuperhero controller = new ControllerSuperhero();
+//    private Controller.ControllerSuperhero controller = new Controller.ControllerSuperhero();
 
     public void saveListOfNames(ArrayList<Superhero> s) {
         try {

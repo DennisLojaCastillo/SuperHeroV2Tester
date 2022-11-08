@@ -1,8 +1,8 @@
-import java.io.FileNotFoundException;
-import java.sql.SQLOutput;
+package MainAndUI;
+import Data.Superhero;
+import Controller.ControllerSuperhero;
+import Enum.MessageEnum;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class UserInterface {
@@ -36,6 +36,7 @@ public class UserInterface {
                     3. Search Superhero
                     4. Edit Superhero List
                     5. Delete Superhero
+                    6. Sorted List
                     9. End Program
                     """);
 
@@ -52,6 +53,7 @@ public class UserInterface {
             case 3 -> searchByAlias();
             case 4 -> editTool();
             case 5 -> deleteHero();
+            case 6 -> sortedList();
             case 9 -> {
                 controller.saveSuperhero();
                 System.out.println("\nGoodbye, Thank you!");
@@ -82,7 +84,7 @@ public class UserInterface {
 
         controller.addSuperhero(name, alias, power, year, strength);
 
-        System.out.println("Superhero Registered!");
+        System.out.println("\nSuperhero Registered!\n");
     }
 
     public void superheroList() {
@@ -90,7 +92,7 @@ public class UserInterface {
             System.out.println("\nThere's no Superhero registered...\n");
         } else {
             System.out.println("List of Superhero's registered\n");
-            //Name Comparator
+            controller.sortByName();
             for (Superhero superhero : controller.getHeros()) {
                 System.out.println(superhero);
             }
@@ -100,18 +102,17 @@ public class UserInterface {
 
         while (sortChoice != 9) {
             System.out.println("""      
-                    Choose to sorted list by:            
+                    Choose to sorted list by:
                     1. Name
                     2. Alias
                     3. Power
                     4. Year
-                    5. Strength                   
+                    5. Strength
                     9. Back to menu
                     """);
             sortChoice = readInteger();
             scanner.nextLine();
             handlingSortedList(sortChoice);
-
         }
     }
 
@@ -124,10 +125,11 @@ public class UserInterface {
                 }
             }
             case 2 -> {
-                controller.sortByAlias();
+                controller.sortByToChoices(1,2);
+                /*controller.sortByAlias();
                 for (Superhero superhero : controller.getHeros()) {
                     System.out.println(superhero);
-                }
+                }*/
             }
             case 3 -> {
                 controller.sortByPower();
@@ -183,11 +185,18 @@ public class UserInterface {
 
             System.out.println("Enter Superhero number to edit informations:");
             int numb = scanner.nextInt();
+
+
+
+
             Superhero editHero;
             scanner.nextLine();
             if (numb - 1 >= controller.getHeros().size()) {
                 System.out.println("\nThis number don't exits in the database. Please try again");
             } else {
+
+                System.out.println("Choose which you want to edit: ");
+
                 editHero = controller.getHeros().get(numb - 1);
                 System.out.println("Edit Person: " + editHero);
 
@@ -229,6 +238,67 @@ public class UserInterface {
                 }
             }
             System.out.println("done");
+        }
+    }
+
+    public void sortedList() {
+        int sortListChoice = -1;
+
+        while (sortListChoice != 9) {
+            System.out.println("""      
+                    Choose to sorted list by:
+                    1. Name
+                    2. Alias
+                    3. Power
+                    4. Year
+                    5. Strength
+                    9. Back to menu
+                    """);
+            sortListChoice = readInteger();
+            scanner.nextLine();
+            handlingSortedList(sortListChoice);
+        }
+
+    }
+
+    public void handlingSortedList(int sortChoice1, int sortChoice2) {
+        switch (sortChoice1) {
+            case 1 -> {
+                controller.sortByName();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 2 -> {
+                controller.sortByAlias();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 3 -> {
+                controller.sortByPower();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 4 -> {
+                controller.sortByYear();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 5 -> {
+                controller.sortByStrength();
+                for (Superhero superhero : controller.getHeros()) {
+                    System.out.println(superhero);
+                }
+            }
+            case 9 -> handlingUserChoice(sortChoice1);
+
+            default -> System.out.println("""   
+                    Could not handle input. Please try again
+                    Choose menu item from 1-5
+                    """);
         }
     }
 

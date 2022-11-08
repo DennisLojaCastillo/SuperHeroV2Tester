@@ -1,5 +1,14 @@
+package Controller;
+
+import Comparators.*;
+import Data.Database;
+import Data.FileHandler;
+import Data.Superhero;
+import Enum.MessageEnum;
+
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 public class ControllerSuperhero {
 private Database database;
@@ -60,4 +69,13 @@ private FileHandler fileHandler;
         Collections.sort(getHeros(), new StrengthComparator());
     }
 
+    public void sortByToChoices(int sortChoice1, int sortChoice2) {
+        Comparator<Superhero> comparator = new HeroNameComparator();
+        comparator = comparator.thenComparing(new PowerComparator());
+        ArrayList<Superhero> heroTest = getHeros();
+        heroTest.sort(comparator);
+        for (Superhero superhero : heroTest) {
+            System.out.println(superhero);
+        }
+    }
 }
